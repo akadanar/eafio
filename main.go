@@ -225,7 +225,7 @@ func main() {
 
 		fmt.Println("Status:", res.Status)
 		fmt.Println("Response:", string(respBody))
-		time.Sleep(time.Second)
+		time.Sleep(10800 * time.Second)
 	}
 
 }

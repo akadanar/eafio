@@ -75,7 +75,7 @@ Create a file named `framelogs.json`:
   - Episode: `1 ~ MaxEps`
   - Frame: `1 ~ max frames in folder`
 - Verifies that selected folder and frame exist before attempting upload
-- Sleeps for **1 second** between uploads (adjust as needed)
+- Sleeps for **3 hours** between uploads (adjust as needed)
 
 ---
 

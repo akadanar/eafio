@@ -101,7 +101,7 @@ func main() {
 
 				startFrame := 1
 				if season == frame.Season && eps == frame.Eps {
-					startFrame = frame.Frame
+					startFrame = frame.Frame + 1
 				}
 				framePath := fmt.Sprintf("./frame/S%d/eps%d", season, eps)
 				maxFrame, errMaxF := countFilesInFolder(framePath)

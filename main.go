@@ -11,6 +11,7 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
+	"strings"
 	"time"
 )
 
@@ -146,7 +147,10 @@ func main() {
 
 					fmt.Println("Status:", res.Status)
 					fmt.Println("Response:", string(respBody))
-
+					if strings.Contains(string(respBody), "error") {
+						panic(string(respBody))
+					}
+					
 					frame.Season = season
 					frame.Eps = eps
 					frame.Frame = f
@@ -225,6 +229,10 @@ func main() {
 
 		fmt.Println("Status:", res.Status)
 		fmt.Println("Response:", string(respBody))
+		if strings.Contains(string(respBody), "error") {
+			panic(string(respBody))
+		}
+		
 		time.Sleep(10800 * time.Second)
 	}
 

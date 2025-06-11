@@ -116,7 +116,7 @@ func CropRandomSquare(inputBuffer []byte) ([]byte, error) {
 		}
 	}
 
-	minCropSize := 200
+	minCropSize := 100
 	if maxCropSize < minCropSize {
 		return nil, fmt.Errorf("image too small to crop: min 200px required")
 	}

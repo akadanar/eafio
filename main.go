@@ -129,10 +129,10 @@ func CropRandomSquare(inputBuffer []byte) ([]byte, error) {
 	startX := 0
 	startY := 0
 	if maxX > 0 {
-		startX = rand.IntN(maxX + 1)
+		startX = maxX/4 + rand.IntN(maxX/2+1)
 	}
 	if maxY > 0 {
-		startY = rand.IntN(maxY + 1)
+		startY = maxY/4 + rand.IntN(maxY/2+1)
 	}
 
 	rect := image.Rect(startX, startY, startX+cropSize, startY+cropSize)

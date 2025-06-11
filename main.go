@@ -121,18 +121,33 @@ func CropRandomSquare(inputBuffer []byte) ([]byte, error) {
 		return nil, fmt.Errorf("image too small to crop: min 200px required")
 	}
 
-	cropSize := rand.IntN(maxCropSize-minCropSize+1) + minCropSize // minCropSize -> maxCropSize
-
+	cropSize := rand.IntN(maxCropSize-minCropSize+1) + minCropSize
 	maxX := width - cropSize
 	maxY := height - cropSize
 
-	startX := 0
-	startY := 0
-	if maxX > 0 {
-		startX = maxX/4 + rand.IntN(maxX/2+1)
-	}
-	if maxY > 0 {
-		startY = maxY/4 + rand.IntN(maxY/2+1)
+	randAxis := rand.IntN(2) // 0: X-priority, 1: Y-priority
+	var startX, startY int
+
+	if randAxis == 0 {
+		if maxX > 0 {
+			startX = rand.IntN(maxX + 1)
+		}
+		if maxY > 0 {
+			startY = rand.IntN(maxY/2 + 1)
+			if rand.IntN(2) == 0 {
+				startY = maxY - startY
+			}
+		}
+	} else {
+		if maxY > 0 {
+			startY = rand.IntN(maxY + 1)
+		}
+		if maxX > 0 {
+			startX = rand.IntN(maxX/2 + 1)
+			if rand.IntN(2) == 0 {
+				startX = maxX - startX
+			}
+		}
 	}
 
 	rect := image.Rect(startX, startY, startX+cropSize, startY+cropSize)
@@ -140,7 +155,6 @@ func CropRandomSquare(inputBuffer []byte) ([]byte, error) {
 		SubImage(r image.Rectangle) image.Image
 	}).SubImage(rect)
 
-	// Encode to buffer
 	var outBuf bytes.Buffer
 	switch format {
 	case "png":

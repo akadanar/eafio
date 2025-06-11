@@ -112,7 +112,7 @@ func main() {
 
 				for f := startFrame; f <= maxFrame; f++ {
 					caption := fmt.Sprintf("Season %d, Episode %d, Frame %d out of %d\n", season, eps, f, maxFrame)
-					imagePath := fmt.Sprintf("%s/frame_%d.png", framePath, startFrame)
+					imagePath := fmt.Sprintf("%s/frame_%d.png", framePath, f)
 
 					var buf bytes.Buffer
 					writer := multipart.NewWriter(&buf)
